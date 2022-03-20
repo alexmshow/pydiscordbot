@@ -7,10 +7,13 @@ from discord import utils
 import asyncio
 
 try:
-    with open("token.txt") as f:
+    with open("token.txt", "r") as f:
         BOT_TOKEN = f.read()
 except FileNotFoundError:
-    print("File token.txt not found!\nCreate token.txt and place your bot token.")
+    print("File token.txt not found!\nPlace your bot token in token.txt")
+    with open("token.txt", "w") as f:
+        f.write("YOUR-TOKEN-HERE")
+
     exit(1)
 
 if len(BOT_TOKEN) < 59:
