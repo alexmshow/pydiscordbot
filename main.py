@@ -1,18 +1,23 @@
 import os, sys
 import discord
 import traceback
-import colorama
 import time
 from discord.ext import commands
 from discord import utils
 import asyncio
 
+try:
+    with open("token.txt") as f:
+        BOT_TOKEN = f.read()
+except FileNotFoundError:
+    print("File token.txt not found!\nCreate token.txt and place your bot token.")
+    exit(1)
 
-with open("token.txt") as f:
-    BOT_TOKEN = f.read()
+if len(BOT_TOKEN) < 59:
+    print("Bad token, please change your token in token.txt")
+    exit(1)
+
 PREFIX="!"
-
-colorama.init()
 
 class Bot(commands.Bot):
     def __init__(self):
@@ -28,12 +33,12 @@ class Bot(commands.Bot):
             i +=1
             try: 
                 self.load_extension(f'cogs.{extension}')
-                print(f'[+] {colorama.Fore.GREEN}Модуль {colorama.Style.RESET_ALL}{extension} {colorama.Fore.GREEN}загружен{colorama.Style.RESET_ALL}')
+                print(f'[+] Модуль {extension} загружен')
             except Exception as err: 
                 exc = f'{type(err).__name__}: {err}'
-                print(f'[-] {colorama.Fore.RED}Произошла ошибка при загрузке{colorama.Style.RESET_ALL} {extension}')
+                print(f'[-] Произошла ошибка при загрузке {extension}')
                 traceback.print_exc()
-        print(f'[{i}] {colorama.Fore.GREEN}модулей загружено{colorama.Style.RESET_ALL} за {round(time.time()-Time, 3)}s')
+        print(f'[{i}] модулей загружено за {round(time.time()-Time, 3)}s')
 
 if __name__ == '__main__':
     bot = Bot()
