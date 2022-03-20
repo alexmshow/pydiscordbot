@@ -1,0 +1,5 @@
+discord.py[voice]
+colorama
+requests
+yt-dlp
+wikipedia

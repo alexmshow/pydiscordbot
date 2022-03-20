@@ -1,0 +1,3 @@
+https://discord.gg/[A-Za-z0-9]*
+http://discord.gg/[A-Za-z0-9]*
+discord.gg/[A-Za-z0-9]*
